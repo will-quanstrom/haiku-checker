@@ -14,10 +14,12 @@ describe('Poem', () => {
         var haiku = new Poem('Ah, tranquility! \n\n Penetrating the very rock, \n\n A cicada’s voice.')
         expect(haiku.checkLines()).toEqual('Your poem has 3 lines!');
     });
-    // test('should correctly indentiy how many lines a poem input has', () => {
-    //     var haiku = new Poem('Ah, tranquility! \n\n Penetrating the very rock, \n\n A cicada’s voice.')
-    //     expect(haiku.checkLines()).toEqual('Your poem has 3 lines!');
-    // });
+
+    test('should correctly tell how many syllables are in a line', () => {
+        var haiku = new Poem('Ah, tranquility! \n Penetrating the very rock, \n A cicada’s voice.')
+        expect(haiku.checkSyllables()).toEqual('The first line has 5 syllables.');
+    });
+
 
 
 });
