@@ -40,22 +40,31 @@ Poem.prototype.checkSyllables = function () {
     let secondLine = writing.slice(1, 2);
     let thirdLine = writing.slice(2, 3);
 
+    let firstLineSyl = 0;
     for(let j = 0; j < firstLine.length; j++) {
-        let firstLineSyl = 0;
-        if(firstLine[j].length < 3) {
-            firstlineSyl++;
-        } else {
-            let vowels = firstLine[j].match(/[aeiou]/ig);
-            firstLineSyl += vowels.length;
-        }
-        return firstLineSyl;
+        if(firstLine[j].length <= 3) { firstLineSyl++;  } else {                        
+        let word = firstLine[j].replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '');   
+        word = word.replace(/^y/, '');                                 
+        firstLineSyl += word.match(/[aeiouy]{1,2}/g).length; 
     }
+    }
+    let secondLineSyl = 0;
+    for(let k = 0; k < secondLine.length; k++) {
+        if(secondLine[k].length <= 3) { secondLineSyl++;  } else {                        
+        let word2 = secondLine[k].replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '');   
+        word2 = word2.replace(/^y/, '');                                 
+        secondLineSyl += word2.match(/[aeiouy]{1,2}/g).length;                    
+    }
+    }
+    let thirdLineSyl = 0;
+    for(let l = 0; l < thirdLine.length; l++) {
+        if(thirdLine[l].length <= 3) { thirdLineSyl++;  } else {                        
+        let word3 = thirdLine[l].replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '');   
+        word3 = word3.replace(/^y/, '');                                 
+         thirdLineSyl += word3.match(/[aeiouy]{1,2}/g).length;                    
+    }
+    }
+        return [firstLineSyl, secondLineSyl, thirdLineSyl];
 
-
-
-
-
-
-    
 }
 
